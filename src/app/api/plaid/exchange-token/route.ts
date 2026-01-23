@@ -30,8 +30,20 @@ export async function POST(request: Request) {
 
         await db.account.create({
             data: {
-                user
+                userId: userId,
+                plaidAccountId: itemId,
+                plaidAccessToken: accessToken,
+                name: "Plaid Connected Bank",
+                type: "depository",
+                currentBalance: 0
             }
-        })
+        });
+
+        console.log("Success! The Access Token saved to the database.");
+
+        return NextResponse.json({ success: true});
+    } catch(error) {
+        console.error("Exchange Error:", error);
+        return NextResponse.json({error: "Failed to exchange token"}, {status: 500});
     }
 }

@@ -21,10 +21,16 @@ export default function LinkAccountButton() {
     }, []);
 
     const onSuccess = useCallback(async (public_token: string, metadata: any) => {
-        console.log("SUCCESS! Public Token:", public_token);
-        console.log("Account Metadata:", metadata);
-        // TODO: Send this public_token to your backend to exchange it for an access_token
-        // await axios.post("/api/plaid/exchange-token", { public_token })
+        try {
+            await axios.post("/api/plaid/exchange-token", { public_token });
+
+            alert("Success! Bank connected and token saved to DB");
+            // console.log("SUCCESS! Public Token:", public_token);
+            console.log("Account Metadata:", metadata);
+        } catch(error) {
+            console.error("Error exchanging token:", error);
+            alert("Connection failed. Check your terminal for details.")
+        }
     }, []);
 
     const { open, ready } = usePlaidLink({
