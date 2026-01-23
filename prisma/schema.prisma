@@ -1,0 +1,85 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    //url = env("DATABASE_URL")
+}
+
+model User {
+    id          String      @id @default(uuid())
+    email       String      @unique
+    firstName   String?
+    lastName    String?
+    clerkUserId String      @unique
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+
+
+    //Relationships
+    accounts        Account[]
+    transactions    Transaction[]
+    budgets         Budget[]
+
+    @@map("user") // It is the best practice to have lowercase table names in postgresql
+}
+
+model Account {
+    id                  String          @id @default(uuid())
+    userId              String      
+    plaidAccountId      String          @unique
+    plaidAccessToken    String?
+    name                String
+    mask                String?
+    type                String
+    subtype             String?
+    currentBalance      Decimal         @db.Decimal(10, 2)
+
+    user                User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+    transactions        Transaction[]
+
+    @@index([userId])
+    @@map("accounts")
+}
+
+model Transaction {
+    id                  String              @id @default(uuid())
+    accountId           String          
+    userId              String
+    plaidTransactionId  String              @unique
+
+    amount              Decimal             @db.Decimal(10, 2)
+    date                DateTime
+    name                String
+    merchantName        String?
+    category            String?
+    paymentChannel      String?
+
+    status              TransactionStatus   @default(PENDING)
+
+    account             Account             @relation(fields: [accountId], references: [id], onDelete: Cascade)
+    user                User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+    @@index([accountId])
+    @@index([date])
+    @@map("transactions")
+}
+
+model Budget {
+    id          String      @id @default(uuid())
+    userId      String      
+    category    String
+    limit       Decimal     @db.Decimal(10, 2)
+    period      String      @default("monthly") // monthly, weekly
+
+    user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("budgets")
+}
+
+enum TransactionStatus {
+    PENDING
+    POSTED
+}
