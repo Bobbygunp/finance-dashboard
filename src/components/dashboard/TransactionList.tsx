@@ -1,38 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-export default function TransactionList() {
-    const [transactions, setTransactions] = useState<any[]>([]);
-    const [loading, setLoading] = useState(false);
+interface TransactionListProps {
+    transactions: any[];
+}
 
-    const fetchTransactions = async () => {
-        setLoading(true);
-        try {
-            const res = await axios.get("/api/plaid/transactions");
-            setTransactions(res.data);
-        } catch(error) {
-            console.error("Error while fetching data:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
+export default function TransactionList({ transactions }: TransactionListProps) {
     return (
-        <Card className="w-full max-w-2xl mt-8">
-            <CardHeader className="flex flex-row items-center justify-between">
-                <button
-                    onClick={fetchTransactions}
-                    className="text-sm bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-                >
-                    {loading ? "Syncing..." : "Sync Transactions"}
-                </button>
+        <Card className="w-full">
+            <CardHeader>
+                <CardTitle>Recent Transactions</CardTitle>
             </CardHeader>
             <CardContent>
                 {transactions.length === 0 ? (
-                    <p className="text-gray-500 text-sm">No transactions found. Click Sync.</p>
+                    <p className="text-gray-500 text-sm">No transactions to display.</p>
                 ) : (
                     <div className="space-y-4">
                         {transactions.map((t) => (

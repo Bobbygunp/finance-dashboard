@@ -2,9 +2,12 @@
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car } from "lucide-react";
 
-export default function SpendingChart({ transactions }: {transactions: any[]}) {
+interface SpendingChartProps {
+    transactions: any[];
+}
+
+export default function SpendingChart({ transactions }: SpendingChartProps) {
     const chartData = transactions.reduce((acc: any[], t) => {
         const date = new Date(t.date).toLocaleDateString();
         const existing = acc.find((item) => item.date === date);
@@ -18,12 +21,16 @@ export default function SpendingChart({ transactions }: {transactions: any[]}) {
     }, []).reverse();
 
     return (
-        <Card className="w-full max-w-2xl mt-8">
+        <Card className="w-full h-[300px]">
             <CardHeader>
-                <CardTitle>Spending Over Time</CardTitle>
+                <CardTitle>Daily Spending</CardTitle>
             </CardHeader>
-            <CardContent className="pl-2">
-                <div className="h-[200px] w-full">
+            <CardContent className="h-[220px]">
+                {chartData.length === 0 ? (
+                    <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+                        No spending data available
+                    </div>
+                ) : (
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={chartData}>
                             <XAxis 
@@ -51,7 +58,7 @@ export default function SpendingChart({ transactions }: {transactions: any[]}) {
                             />
                         </BarChart>
                     </ResponsiveContainer>
-                </div>
+                )}
             </CardContent>
         </Card>
     )
