@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { plaidClient } from "@/lib/plaid";
 import { db } from "@/lib/db";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 export async function POST(request: Request) {
     try {
@@ -14,17 +15,22 @@ export async function POST(request: Request) {
         const accessToken = response.data.access_token;
         const itemId = response.data.item_id;
 
-        const userId = "test_user_123";
+        const { userId } = await auth();
+        const user = await currentUser();
+
+        if(!userId || !user) {
+            return NextResponse.json({ error: "Unauthorized" }, {status: 401});
+        }
 
         await db.user.upsert({
             where: { id: userId },
             update: {},
             create: {
                 id: userId,
-                email: "demo@example.com",
-                clerkUserId: "demo_clerk_user_id",
-                firstName: "Demo",
-                lastName: "User"
+                email: user.emailAddresses[0]?.emailAddress || "no-email@example.com",
+                clerkUserId: userId,
+                firstName: user.firstName,
+                lastName: user.lastName
             }
         });
 

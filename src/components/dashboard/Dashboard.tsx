@@ -7,6 +7,7 @@ import TransactionList from "./TransactionList";
 import SpendingChart from "./SpendingChart";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Dashboard() {
     const [transactions, setTransactions] = useState<any[]>([]);
@@ -29,8 +30,11 @@ export default function Dashboard() {
             {/* The control bar at the top*/}
             <div className="flex justify-between items-center bg-white p-4 rounded-lg border shadow-sm">
                 <div>
-                    <h2 className="text-lg font-semibold">Bank Connections</h2>
-                    <p className="text-sm text-gray-500">Manage your linked accounts</p>
+                    <UserButton />
+                    <div>
+                        <h2 className="text-lg font-semibold">Bank Connections</h2>
+                        <p className="text-sm text-gray-500">Manage your linked accounts</p>
+                    </div>
                 </div>
                 <div className="flex gap-4">
                     <LinkAccountButton />
