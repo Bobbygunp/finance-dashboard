@@ -8,6 +8,7 @@ import SpendingChart from "./SpendingChart";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
+import AIInsights from "./AIInsights";
 
 export default function Dashboard() {
     const [transactions, setTransactions] = useState<any[]>([]);
@@ -44,6 +45,8 @@ export default function Dashboard() {
                     </Button>
                 </div>
             </div>
+
+            <AIInsights />
 
             {/* The spending chart */}
             <SpendingChart transactions={transactions} />
