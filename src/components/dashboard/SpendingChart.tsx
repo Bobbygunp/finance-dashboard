@@ -13,9 +13,9 @@ export default function SpendingChart({ transactions }: SpendingChartProps) {
         const existing = acc.find((item) => item.date === date);
 
         if(existing) {
-            existing.amount += t.amount;
+            existing.amount = Number(existing.amount) + Number(t.amount);
         } else {
-            acc.push({ date, amount: t.amount });
+            acc.push({ date, amount: Number(t.amount)});
         }
         return acc;
     }, []).reverse();
