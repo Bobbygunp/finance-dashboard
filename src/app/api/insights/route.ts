@@ -21,35 +21,45 @@ export async function POST() {
         });
 
         if(transactions.length === 0) {
-            return NextResponse.json({ insight: "No transactions found to analyze."});
+            return NextResponse.json({ 
+                insight: {
+                    summary: "No transactions found to analyze.",
+                    savings: "Start spending to see insights!",
+                    positive: "You have no debt!"
+                }
+            });
         }
 
         const transactionSummary = transactions.map(t => 
-            `${t.name}: ${t.amount} (${t.date.toISOString().split('T')[0]})`
+            `${t.name}: $${t.amount} (${t.date.toISOString().split('T')[0]})`
         ).join("\n");
 
         const prompt = `
-            You are a friendly financial advisor.
+            You are a friendly financial advisor. 
             Analyze the following recent financial transactions:
-
             ${transactionSummary}
 
-            Please Provide:
-            1. A brief summary of spending habits.
-            2. One specific area where I could save money.
-            3. A positive reinforcement about a good financial choice (or general encouragement).
-
-            Keep the tone helpful and concise (under 150 words).
+            Return a JSON object with exactly three keys:
+            1. "summary": A brief summary of spending habits (max 2 sentences).
+            2. "savings": One specific area to save money (max 2 sentences).
+            3. "positive": A positive reinforcement or compliment (max 2 sentences).
+            
+            Do not use markdown. Just plain text strings for the values.
         `;
 
         const completion = await openai.chat.completions.create({
             messages: [{ role: "user", content: prompt}],
-            model: "gpt-4o",
+            model: "gpt-5-mini",
+            response_format: {type: "json_object" },
         });
 
-        const insight = completion.choices[0].message.content;
+        // const insight = completion.choices[0].message.content;
+        const insightContent = completion.choices[0].message.content;
+        const insightData = insightContent ? JSON.parse(insightContent) : null;
 
-        return NextResponse.json({ insight });
+        return NextResponse.json({ insight: insightData });
+
+        // return NextResponse.json({ insight });
     } catch(error) {
         console.error("AI Error:", error);
         return NextResponse.json({ error: "Failed to generate insights" }, { status: 500 });
