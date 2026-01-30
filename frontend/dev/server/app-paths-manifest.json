@@ -1,0 +1,7 @@
+{
+  "/api/insights/route": "app/api/insights/route.js",
+  "/api/plaid/create-link-token/route": "app/api/plaid/create-link-token/route.js",
+  "/api/plaid/exchange-token/route": "app/api/plaid/exchange-token/route.js",
+  "/api/plaid/transactions/route": "app/api/plaid/transactions/route.js",
+  "/page": "app/page.js"
+}

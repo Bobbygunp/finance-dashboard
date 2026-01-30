@@ -1,0 +1,10 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/insights/route.js")
+R.c("server/chunks/node_modules_74030863._.js")
+R.c("server/chunks/node_modules_next_011a01eb._.js")
+R.c("server/chunks/node_modules_@clerk_backend_dist_db393919._.js")
+R.c("server/chunks/node_modules_openai_f417a314._.js")
+R.c("server/chunks/[root-of-the-server]__25d0769d._.js")
+R.c("server/chunks/[root-of-the-server]__0b0cae2b._.js")
+R.c("server/chunks/_next-internal_server_app_api_insights_route_actions_97f99216.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/insights/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/insights/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

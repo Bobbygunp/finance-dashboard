@@ -1,0 +1,13 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/plaid/transactions/route.js")
+R.c("server/chunks/node_modules_40826e91._.js")
+R.c("server/chunks/node_modules_next_2b850007._.js")
+R.c("server/chunks/node_modules_mime-db_f53cdd2e._.js")
+R.c("server/chunks/node_modules_axios_dist_node_axios_cjs_ef84af05._.js")
+R.c("server/chunks/node_modules_plaid_dist_api_da7723ba.js")
+R.c("server/chunks/node_modules_plaid_dist_ad44e3e5._.js")
+R.c("server/chunks/node_modules_@clerk_backend_dist_db393919._.js")
+R.c("server/chunks/[root-of-the-server]__e0e7055b._.js")
+R.c("server/chunks/[root-of-the-server]__e2b27f02._.js")
+R.c("server/chunks/_next-internal_server_app_api_plaid_transactions_route_actions_871f9728.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/plaid/transactions/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/plaid/transactions/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

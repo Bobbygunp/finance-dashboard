@@ -1,0 +1,16 @@
+[00:00:01.201] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.275] Server  LOG     ✓ Ready in 1046ms
+[00:00:10.747] Browser WARN    Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
+[00:00:10.747] Browser WARN    Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
+[00:00:10.767] Server  ERROR   (node:71759) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[00:00:36.007] Server  LOG     Success! The Access Token saved to the database.
+[00:00:37.266] Browser LOG     Account Metadata: {"account":{"class_type":null,"id":"bnpyl3lEDBh34bapxvLZswjNlBKaQZTooX6Mm","mask":"0000","name":"Plaid Checking","subtype":"checking","type":"depository","verification_status":null},"account_id":"bnpyl3lEDBh34bapxvLZswjNlBKaQZTooX6Mm","accounts":[{"class_type":null,"id":"bnpyl3lEDBh34bapxvLZswjNlBKaQZTooX6Mm","mask":"0000","name":"Plaid Checking","subtype":"checking","type":"depository","verification_status":null}],"institution":{"institution_id":"ins_5","name":"Citibank Online"},"link_session_id":"019c0ab8-4cfa-789a-bd2c-cc9db5be3a74","public_token":"public-sandbox-a72c3bf1-32ec-4e91-be3e-7b1cd37daa82","status":null,"transfer_status":null,"wallet":null}
+[00:00:41.940] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:00:41.940] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.

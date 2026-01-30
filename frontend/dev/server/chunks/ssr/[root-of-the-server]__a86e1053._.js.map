@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///Users/prashanthgundala/Desktop/finance-dashboard/src/app/sign-in/%5B%5B...sign-in%5D%5D/page.tsx"],"sourcesContent":["import { SignIn } from \"@clerk/nextjs\";\n\nexport default function Page() {\n    return (\n        <div className=\"flex h-screen items-center justify-center\">\n            <SignIn path=\"/sign-in\" />\n        </div>\n    );\n}"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACpB,qBACI,8OAAC;QAAI,WAAU;kBACX,cAAA,8OAAC,gMAAM;YAAC,MAAK;;;;;;;;;;;AAGzB"}}]
+}
